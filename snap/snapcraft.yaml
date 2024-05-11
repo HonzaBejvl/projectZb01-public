@@ -79,12 +79,10 @@ layout:
   /etc/gtk-3.0:
     bind: $SNAP/etc/gtk-3.0
 
-parts:
   game01-tauri:
-    plugin: nil
+    plugin: dump
     source: https://github.com/HonzaBejvl/projectZb01-public/releases/download/app-v0.2.0/game01_0.2.0_amd64-debug.deb
-    build-environment:
-      - PATH: "$PATH:$SNAPCRAFT_PART_BUILD/node_modules/.bin"
+    source-type: deb
     override-build: |
       # Ensure environment is suitable for running hooks
       set +u # core20 base does not allow unbound variables !
@@ -94,11 +92,11 @@ parts:
         export HTTP_PROXY="${http_proxy}"
         export HTTPS_PROXY="${http_proxy}"
       fi
-
-      # No build steps are necessary, just move the binary
-      mkdir -p $SNAPCRAFT_PART_INSTALL/game01-tauri
-      cp -a ./game01_0.2.0_amd64-debug.deb  $SNAPCRAFT_PART_INSTALL/game01-tauri/
-      chmod a+rx $SNAPCRAFT_PART_INSTALL/game01-tauri/game01_0.2.0_amd64-debug.deb
+      
+      # The 'dump' plugin handles unpacking, no need to manually move files
+      # Assuming the binary name is 'game01', and typical install location for binaries in a deb
+      chmod a+rx $SNAPCRAFT_PART_INSTALL/usr/bin/game01  # Adjust path as needed
+    
     stage-packages:
       - libnspr4
       - libnss3
@@ -106,8 +104,9 @@ parts:
       - libcups2
       - libgtk-3-0
       - libasound2
+    
     build-snaps:
-      - node/16/stable
+      - rustup
 
   wrapper:
     plugin: dump
