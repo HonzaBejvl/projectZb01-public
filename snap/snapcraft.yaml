@@ -79,6 +79,7 @@ layout:
   /etc/gtk-3.0:
     bind: $SNAP/etc/gtk-3.0
 
+parts:
   game01-tauri:
     plugin: dump
     source: https://github.com/HonzaBejvl/projectZb01-public/releases/download/app-v0.2.0/game01_0.2.0_amd64-debug.deb
