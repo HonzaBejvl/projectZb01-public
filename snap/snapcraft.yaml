@@ -96,11 +96,9 @@ parts:
       fi
 
       # No build steps are necessary, just move the binary
-      # Replace 'tauri-app-name' with the actual name of your binary
-      # and adjust the path depending on the structure of your tar/zip file
       mkdir -p $SNAPCRAFT_PART_INSTALL/game01-tauri
-      cp -a ./tauri-app-name $SNAPCRAFT_PART_INSTALL/game01-tauri/
-      chmod a+rx $SNAPCRAFT_PART_INSTALL/game01-tauri/tauri-app-name
+      cp -a ./game01_0.2.0_amd64-debug.deb  $SNAPCRAFT_PART_INSTALL/game01-tauri/
+      chmod a+rx $SNAPCRAFT_PART_INSTALL/game01-tauri/game01_0.2.0_amd64-debug.deb
     stage-packages:
       - libnspr4
       - libnss3
