@@ -84,30 +84,15 @@ parts:
     plugin: dump
     source: https://github.com/HonzaBejvl/projectZb01-public/releases/download/app-v0.2.0/game01_0.2.0_amd64-debug.deb
     source-type: deb
-    override-build: |
-      # Ensure environment is suitable for running hooks
-      set +u # core20 base does not allow unbound variables !
-      
-      # Setup proxy if necessary
-      if [ -n "$http_proxy" ]; then
-        export HTTP_PROXY="${http_proxy}"
-        export HTTPS_PROXY="${http_proxy}"
-      fi
-      
-      # The 'dump' plugin handles unpacking, no need to manually move files
-      # Assuming the binary name is 'game01', and typical install location for binaries in a deb
-      chmod a+rx $SNAPCRAFT_PART_INSTALL/usr/bin/game01  # Adjust path as needed
-    
-    stage-packages:
-      - libnspr4
-      - libnss3
-      - libatk-bridge2.0-0
-      - libcups2
-      - libgtk-3-0
-      - libasound2
-    
-    build-snaps:
-      - rustup
+#    stage-packages:
+#      - libnspr4
+#      - libnss3
+#      - libatk-bridge2.0-0
+#      - libcups2
+#      - libgtk-3-0
+#      - libasound2
+#    build-snaps:
+#      - rustup
 
   wrapper:
     plugin: dump
