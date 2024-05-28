@@ -1,12 +1,9 @@
 #! /bin/sh
 
+# Optional: Add any conditional checks or extra options that are needed
 if grep -q "Pi 4" /proc/cpuinfo; then
-  EXTRAOPTS="--disable-gpu"
+  EXTRAOPTS="--disable-gpu"  # Adjust according to the actual options your Tauri app supports
 fi
 
-exec $SNAP/electron-helloworld/electron-quick-start \
-	--enable-features=UseOzonePlatform \
-	--ozone-platform=wayland \
-	--disable-dev-shm-usage \
-	--enable-wayland-ime \
-	--no-sandbox $EXTRAOPTS
+# Execute your Tauri application
+exec $SNAP/usr/bin/game01 $EXTRAOPTS
